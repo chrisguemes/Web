@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="//pubnub.github.io/eon/v/eon/0.0.9/eon.js"></script>
+<link type="text/css" rel="stylesheet" href="//pubnub.github.io/eon/v/eon/0.0.9/eon.css"/>
+</head>
+<body>
+<div id="gaugechart"></div>
+<div id="splinechart"></div>
+<script>
+	var pubnub = PUBNUB.init({
+		publish_key: 'pub-c-8eee4c02-e844-4e5b-8832-2c0bc50a0329',
+		subscribe_key: 'sub-c-b7a86900-892f-11e5-a558-0619f8945a4f',
+		});
+	var channel = "Atmel_Pubnub";
+	eon.chart({
+		pubnub: pubnub,
+		channel: channel,
+		generate: {
+			bindto: '#gaugechart',
+			data: {
+				type: 'gauge',
+				},
+			gauge: {
+				min: -40,
+				max: 60,
+				units: ' ºC'
+				},
+			color: {
+				pattern: ['#FF0000', '#F6C600', '#60B044'],
+				threshold: {
+					values: [0, 10, 30]
+					}
+				}
+			}
+		});
+</script>
+</body>
+</html>
